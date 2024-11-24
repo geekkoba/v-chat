@@ -9,7 +9,7 @@ import { registerPlugins } from '@/plugins'
 
 // Components
 import App from './App.vue'
-
+import store from './store/auth'
 // Composables
 import { createApp } from 'vue'
 
@@ -17,4 +17,7 @@ const app = createApp(App)
 
 registerPlugins(app)
 
-app.mount('#app')
+store.dispatch('checkSession').then(()=> {
+    app.mount('#app')
+})
+
